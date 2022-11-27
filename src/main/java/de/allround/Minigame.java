@@ -8,8 +8,8 @@ public abstract class Minigame extends JavaPlugin {
     public static Minigame instance;
     private final GameManager gameManager;
 
-    public GameManager getGameManager() {
-        return gameManager;
+    public Minigame(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     public static Minigame getInstance(Class<? extends Minigame> mainClass) {
@@ -20,12 +20,14 @@ public abstract class Minigame extends JavaPlugin {
         return instance;
     }
 
-    public Minigame(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public GameManager getGameManager() {
+        return gameManager;
     }
 
     public abstract void onInit();
+
     public abstract void onStart();
+
     public abstract void onStop();
 
     @Override

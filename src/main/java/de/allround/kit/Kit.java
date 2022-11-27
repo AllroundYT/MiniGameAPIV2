@@ -17,11 +17,11 @@ public class Kit {
     private final int startXp;
 
 
-    public static String serialize(Kit kit){
+    public static String serialize(Kit kit) {
         return "";
     }
 
-    public static Kit deserialize(String jsonString){
+    public static Kit deserialize(String jsonString) {
         return null;
     }
 }

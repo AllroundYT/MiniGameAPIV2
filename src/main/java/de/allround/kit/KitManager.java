@@ -19,27 +19,28 @@ public class KitManager { //todo: TEMPLATE KIT verbessern
         this.kits = new ArrayList<>();
         Kit templateKit = new Kit(
                 "template",
-                new ItemStack(Material.ANVIL,2),
+                new ItemStack(Material.ANVIL, 2),
                 new ItemStack[]{},
                 new ItemStack[]{},
                 new ItemStack[]{},
-                new PotionEffect[]{new PotionEffect(PotionEffectType.ABSORPTION,1,1,false,true,false)},
+                new PotionEffect[]{new PotionEffect(PotionEffectType.ABSORPTION, 1, 1, false, true, false)},
                 5
         );
         registerKits(templateKit);
     }
 
     @SuppressWarnings("ALL")
-    public KitManager registerKits(Kit kit,Kit... kits){
+    public KitManager registerKits(Kit kit, Kit... kits) {
         this.kits.add(kit);
         this.kits.addAll(List.of(kits));
         return this;
     }
-    public Optional<Kit> getKit(String name){
+
+    public Optional<Kit> getKit(String name) {
         return getKits().stream().filter(kit -> kit.getName().equals(name)).findFirst();
     }
 
-    public Kit loadKit(Path path){
+    public Kit loadKit(Path path) {
         if (!path.toFile().exists()) return null;
         try (final BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(path.toFile()))) {
             return Kit.deserialize(new String(bufferedInputStream.readAllBytes()));
@@ -49,7 +50,7 @@ public class KitManager { //todo: TEMPLATE KIT verbessern
         }
     }
 
-    public void saveTemplateKit(Path path){
+    public void saveTemplateKit(Path path) {
         String jsonString = Kit.serialize(getKit("template").get());
         try {
             if (path.toFile().exists()) path.toFile().delete();

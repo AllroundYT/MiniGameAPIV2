@@ -8,6 +8,7 @@ import java.util.Optional;
 public class GameStateManager {
     private final List<GameState> gameStates;
     private GameState runningState;
+
     public GameStateManager() {
         this.gameStates = new ArrayList<>();
     }
@@ -16,11 +17,11 @@ public class GameStateManager {
         return gameStates;
     }
 
-    public void registerGameStates(GameState... gameStates){
+    public void registerGameStates(GameState... gameStates) {
         this.gameStates.addAll(Arrays.asList(gameStates));
     }
 
-    public Optional<GameState> getGameState(String name){
+    public Optional<GameState> getGameState(String name) {
         return getGameStates().stream().filter(gameState -> gameState.getName().equals(name)).findFirst();
     }
 
@@ -28,7 +29,7 @@ public class GameStateManager {
         return runningState;
     }
 
-    public void startGameState(String state){
+    public void startGameState(String state) {
         Optional<GameState> gameState = getGameState(state);
         if (gameState.isEmpty()) return;
         this.runningState.stop();

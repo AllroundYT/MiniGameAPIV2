@@ -81,7 +81,7 @@ public class ItemBuilder {  //TODO: erweitern
         return this;
     }
 
-    public ItemBuilder setData(byte data){
+    public ItemBuilder setData(byte data) {
         Objects.requireNonNull(this.itemStack.getData()).setData(data);
         return this;
     }
@@ -92,7 +92,8 @@ public class ItemBuilder {  //TODO: erweitern
                 skullMeta.setOwningPlayer(player);
                 skullMeta.setPlayerProfile(player.getPlayerProfile());
             }
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
         return this;
     }
 

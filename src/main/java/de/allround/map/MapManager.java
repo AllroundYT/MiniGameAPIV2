@@ -16,7 +16,7 @@ public class MapManager {  //TODO: map system fehlt noch komplett
         return blockManager;
     }
 
-    private GameManager getGameManager(){
+    private GameManager getGameManager() {
         return this.gameManager;
     }
 }

@@ -58,17 +58,17 @@ public final class Document {
     }
 
     public Document addIfNotExists(String key, boolean state) {
-        if(!has(key)) set(key, state);
+        if (!has(key)) set(key, state);
         return this;
     }
 
     public Document addIfNotExists(String key, int state) {
-        if(!has(key)) set(key, state);
+        if (!has(key)) set(key, state);
         return this;
     }
 
     public Document addIfNotExists(String key, String state) {
-        if(!has(key)) set(key, state);
+        if (!has(key)) set(key, state);
         return this;
     }
 
@@ -86,7 +86,7 @@ public final class Document {
     }
 
     public @NotNull Document read(final @NotNull Path path) {
-        if(!Files.exists(path)) return this;
+        if (!Files.exists(path)) return this;
         try (final BufferedReader fileReader = Files.newBufferedReader(path)) {
             this.jsonObject = JsonParser.parseReader(fileReader).getAsJsonObject();
         } catch (IOException e) {
@@ -114,6 +114,10 @@ public final class Document {
         return this;
     }
 
+    public @NotNull JsonObject getJsonObject() {
+        return this.jsonObject;
+    }
+
     public @NotNull Document setJsonObject(final @NotNull JsonObject jsonObject) {
         this.jsonObject = jsonObject;
         return this;
@@ -122,10 +126,6 @@ public final class Document {
     public @NotNull Document setJsonObject(final @NotNull Object object) {
         this.jsonObject = GSON.toJsonTree(object).getAsJsonObject();
         return this;
-    }
-
-    public @NotNull JsonObject getJsonObject() {
-        return this.jsonObject;
     }
 
     @Override

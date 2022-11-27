@@ -17,33 +17,35 @@ public class ItemAbilityRegister {
     public ItemAbilityRegister() {
         this.itemAbilities = new HashMap<>();
 
-        EventManager.listen(PlayerInteractEvent.class,event -> {
-            if (event.getItem() == null) return;
-            getItemAbilities(event.getItem()).forEach(itemAbility -> itemAbility.onInteract(event));
-        });
+        EventManager.listen(
+                PlayerInteractEvent.class,
+                event -> getItemAbilities(event.getItem()).forEach(itemAbility -> itemAbility.onInteract(event)),
+                event -> event.getItem() != null
+        );
 
-        EventManager.listen(PlayerDropItemEvent.class,event -> {
-            getItemAbilities(event.getItemDrop().getItemStack()).forEach(itemAbility -> itemAbility.onDrop(event));
-        });
+        EventManager.listen(
+                PlayerDropItemEvent.class,
+                event -> getItemAbilities(event.getItemDrop().getItemStack()).forEach(itemAbility -> itemAbility.onDrop(event))
+        );
     }
 
-    public ItemAbilityRegister registerAbility(String identifier, ItemAbility itemAbility){
+    public ItemAbilityRegister registerAbility(String identifier, ItemAbility itemAbility) {
         itemAbilities.put(identifier, itemAbility);
         return this;
     }
 
-    public ItemAbility getItemAbility(String identifier){
-        return itemAbilities.getOrDefault(identifier,null);
+    public ItemAbility getItemAbility(String identifier) {
+        return itemAbilities.getOrDefault(identifier, null);
     }
 
-    public boolean hasItemAbilities(ItemStack itemStack){
+    public boolean hasItemAbilities(ItemStack itemStack) {
         return getItemAbilities(itemStack).size() > 0;
     }
 
-    public List<ItemAbility> getItemAbilities(ItemStack itemStack){
+    public List<ItemAbility> getItemAbilities(ItemStack itemStack) {
         List<ItemAbility> abilities = new ArrayList<>();
         itemStack.getItemMeta().getPersistentDataContainer().getKeys().forEach(namespacedKey -> {
-            if (itemAbilities.containsKey(namespacedKey.getKey())){
+            if (itemAbilities.containsKey(namespacedKey.getKey())) {
                 abilities.add(getItemAbility(namespacedKey.getKey()));
             }
         });
@@ -52,6 +54,7 @@ public class ItemAbilityRegister {
 
     public static abstract class ItemAbility {
         public abstract void onInteract(PlayerInteractEvent event);
+
         public abstract void onDrop(PlayerDropItemEvent event);
     }
 }

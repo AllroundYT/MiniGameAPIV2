@@ -1,7 +1,5 @@
 package de.allround.player;
 
-import de.allround.GameManager;
-import de.allround.Minigame;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -18,20 +16,20 @@ public class PlayerManager {
         this.cachedPlayers = new HashMap<>();
     }
 
-    public List<MinigamePlayer> getPlayers(){
+    public List<MinigamePlayer> getPlayers() {
         Bukkit.getOnlinePlayers().forEach(player -> getPlayer(player.getUniqueId()));
         return new ArrayList<>(cachedPlayers.values());
     }
 
-    public List<MinigamePlayer> getPlayers(Predicate<MinigamePlayer> predicate){
+    public List<MinigamePlayer> getPlayers(Predicate<MinigamePlayer> predicate) {
         return getPlayers().stream().filter(predicate).collect(Collectors.toList());
     }
 
-    public List<MinigamePlayer> getWinner(){
+    public List<MinigamePlayer> getWinner() {
         return getPlayers(MinigamePlayer::hasWon);
     }
 
-    public List<MinigamePlayer> getSpectators(){
+    public List<MinigamePlayer> getSpectators() {
         return getPlayers(MinigamePlayer::isSpectator);
     }
 

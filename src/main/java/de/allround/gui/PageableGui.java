@@ -9,7 +9,7 @@ public class PageableGui {
     private final Gui[] pages;
 
 
-    public PageableGui(String name, Gui... pages){
+    public PageableGui(String name, Gui... pages) {
         this.pages = pages;
         this.name = name;
     }

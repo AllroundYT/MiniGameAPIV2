@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import java.util.Objects;
 
 public class DefaultListener {
-    public void register(){
+    public void register() {
         EventManager.listen(
                 InventoryClickEvent.class,
                 event -> ((Gui) Objects.requireNonNull(event.getInventory().getHolder())).onClick(event),  //consumer der bei dem event ausgeführt wird
