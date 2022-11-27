@@ -13,14 +13,14 @@ public class DefaultListener {
     public void register() {
         EventManager.listen(
                 InventoryClickEvent.class,
-                event -> ((Gui) Objects.requireNonNull(event.getInventory().getHolder())).onClick(event),  //consumer der bei dem event ausgeführt wird
-                event -> event.getInventory().getHolder() instanceof Gui //bedingung damit der consumer ausgeführt wird
+                event -> ((Gui) Objects.requireNonNull(event.getInventory().getHolder())).onClick(event),
+                event -> event.getInventory().getHolder() instanceof Gui
         );
 
         EventManager.listen(
                 InventoryCloseEvent.class,
-                event -> ((Gui) Objects.requireNonNull(event.getInventory().getHolder())).onClose(event),  //consumer der bei dem event ausgeführt wird
-                event -> event.getInventory().getHolder() instanceof Gui //bedingung damit der consumer ausgeführt wird
+                event -> ((Gui) Objects.requireNonNull(event.getInventory().getHolder())).onClose(event),
+                event -> event.getInventory().getHolder() instanceof Gui
         );
 
         EventManager.listen(
