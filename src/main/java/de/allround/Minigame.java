@@ -1,5 +1,6 @@
 package de.allround;
 
+import de.allround.event.DefaultListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class Minigame extends JavaPlugin {
@@ -34,6 +35,7 @@ public abstract class Minigame extends JavaPlugin {
 
     @Override
     public final void onEnable() {
+        new DefaultListener().register();
         onStart();
     }
 
