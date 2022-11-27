@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class ItemSerializer { //TODO: es werden noch nicht alle felder gespeichert.
+public class ItemSerializer { //TODO: googlen nach nen spigot itemstack to json serializer
     private final static Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
             .create();
