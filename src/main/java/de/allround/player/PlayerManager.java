@@ -1,6 +1,7 @@
 package de.allround.player;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,10 @@ public class PlayerManager {
 
     public List<MinigamePlayer> getPlayers(Predicate<MinigamePlayer> predicate) {
         return getPlayers().stream().filter(predicate).collect(Collectors.toList());
+    }
+
+    public MinigamePlayer getPlayer(Player player){
+        return getPlayer(player.getUniqueId());
     }
 
     public List<MinigamePlayer> getWinner() {
