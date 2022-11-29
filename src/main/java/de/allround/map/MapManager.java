@@ -23,6 +23,10 @@ public abstract class MapManager {
         this.maps = new ArrayList<>();
     }
 
+    public List<GameMap> getPlayableMaps(){
+        return this.maps.stream().filter(this::isPlayAble).collect(Collectors.toList());
+    }
+
     public Location getLobbySpawn() {
         if (lobbySpawn == null) return Bukkit.getWorlds().get(0).getSpawnLocation();
         return lobbySpawn;
