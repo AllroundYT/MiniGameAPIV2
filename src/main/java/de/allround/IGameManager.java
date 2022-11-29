@@ -7,7 +7,7 @@ import de.allround.player.PlayerManager;
 import de.allround.player.TeamManager;
 import de.allround.states.GameStateManager;
 
-public interface GameManager {
+public interface IGameManager {
     PlayerManager getPlayerManagement();
 
     MapManager getMapManagement();

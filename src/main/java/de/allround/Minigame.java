@@ -6,10 +6,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public abstract class Minigame extends JavaPlugin {
 
     public static Minigame instance;
-    private final GameManager gameManager;
+    private final IGameManager IGameManager;
 
-    public Minigame(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public Minigame(IGameManager IGameManager) {
+        this.IGameManager = IGameManager;
     }
 
     public static Minigame getInstance(Class<? extends Minigame> mainClass) {
@@ -20,8 +20,8 @@ public abstract class Minigame extends JavaPlugin {
         return instance;
     }
 
-    public GameManager getGameManager() {
-        return gameManager;
+    public IGameManager getGameManager() {
+        return IGameManager;
     }
 
     public abstract void onInit();

@@ -1,18 +1,17 @@
 package de.allround.map;
 
-import de.allround.GameManager;
+import de.allround.IGameManager;
 import de.allround.Minigame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class MapManager {
-    private final GameManager gameManager;
+    private final IGameManager IGameManager;
     private final BlockManager blockManager;
     private final List<GameMap> maps;
     private GameMap mapToPlay;
@@ -20,7 +19,7 @@ public abstract class MapManager {
 
     public MapManager(BlockManager blockManager) {
         this.blockManager = blockManager;
-        this.gameManager = Minigame.getInstance().getGameManager();
+        this.IGameManager = Minigame.getInstance().getGameManager();
         this.maps = new ArrayList<>();
     }
 
@@ -65,7 +64,7 @@ public abstract class MapManager {
         return blockManager;
     }
 
-    private GameManager getGameManager() {
-        return this.gameManager;
+    private IGameManager getGameManager() {
+        return this.IGameManager;
     }
 }
