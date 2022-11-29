@@ -1,5 +1,6 @@
 package de.allround.player;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -8,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.UUID;
 
+@Getter
 public class MinigamePlayer {
     private final UUID uuid;
     private final HashMap<String, Object> dataFields;

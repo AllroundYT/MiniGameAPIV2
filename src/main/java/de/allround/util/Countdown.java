@@ -79,10 +79,14 @@ public abstract class Countdown {
         if (isCancelNextTick()) return;
         postTick();
         if (getTime() <= 0) {
-            onEnd();
-            cancelTask();
+            stop();
         }
         time--;
+    }
+
+    public void stop(){
+        onEnd();
+        cancelTask();
     }
 
     public abstract void preTick();
