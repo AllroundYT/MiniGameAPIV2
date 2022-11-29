@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ItemBuilder {  //TODO: erweitern
+public class ItemBuilder {
     private final ItemStack itemStack;
     private final ItemMeta itemMeta;
 

@@ -2,6 +2,6 @@ name: MiniGameAPI
 author: Allround
 website: https://github.com/AllroundYT
 description: A simple to use minigame api to make the creation process of minigames easier.
-version: 0.1-Development
+version: ${project.version}
 api-version: 1.19
 commands:
