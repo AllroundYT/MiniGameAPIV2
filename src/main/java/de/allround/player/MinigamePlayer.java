@@ -65,4 +65,8 @@ public class MinigamePlayer {
     public OfflinePlayer asOfflinePlayer() {
         return Bukkit.getOfflinePlayer(this.uuid);
     }
+
+    public boolean isOnline(){
+        return asOfflinePlayer().isOnline();
+    }
 }
