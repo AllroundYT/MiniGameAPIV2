@@ -3,7 +3,7 @@ An easy to use Minigame APi for PaperSpigot.
 Dies ist eine einfache Minigame APi für PaperSpigot.
 
 JavaDoc will be completed soon.
-Die Javadocumentation wird in naher Zukunft fertig gestellt.
+Die Java Documentation wird in naher Zukunft fertig gestellt.
 
 Maven repository:
 ```
@@ -19,6 +19,6 @@ Maven dependencies:
 <dependency>
     <groupId>com.github.AllroundYT</groupId>
     <artifactId>MiniGameAPIV2</artifactId>
-    <version>Beta</version>
+    <version>master-63998c03a1-1</version>
 </dependency>
 ```
