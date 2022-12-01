@@ -14,8 +14,6 @@ public interface IGameManager {
 
     TeamManager getTeamManagement();
 
-    ScoreboardProvider getScoreboardProvider();
-
     ItemAbilityRegister getItemAbilityRegister();
 
     KitManager getKitManagement();
