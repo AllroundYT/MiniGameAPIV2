@@ -2,6 +2,7 @@ package de.allround.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +18,13 @@ public class PlayerManager {
         this.cachedPlayers = new HashMap<>();
     }
 
-    public List<MinigamePlayer> getPlayers() {
+    public List<MinigamePlayer> getCachedPlayers() {
         Bukkit.getOnlinePlayers().forEach(player -> getPlayer(player.getUniqueId()));
         return new ArrayList<>(cachedPlayers.values());
+    }
+
+    public List<MinigamePlayer> getPlayers(){
+        return getPlayers(minigamePlayer -> minigamePlayer.isOnline() && !minigamePlayer.isSpectator());
     }
 
     public List<MinigamePlayer> getPlayers(Predicate<MinigamePlayer> predicate) {

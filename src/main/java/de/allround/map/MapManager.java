@@ -50,6 +50,14 @@ public abstract class MapManager {
         maps.addAll(List.of(gameMaps));
     }
 
+    public void unregisterMaps(String... maps){
+        for (String map : maps) {
+            if (getMap(map).isPresent()){
+                this.maps.remove(getMap(map).get());
+            }
+        }
+    }
+
     public Optional<GameMap> getMap(String name){
         return maps.stream().filter(gameMap -> gameMap.getName().equals(name)).findFirst();
     }
