@@ -7,6 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -39,7 +40,7 @@ public class EventManager {
             if (!(listener instanceof EventListener)) return;
             if (!(event.getClass().equals(eventClass))) return;
             ((EventListener) listener).handleEvent(event);
-        }, Minigame.getInstance());
+        }, (Plugin) Minigame.getInstance());
         EventManager.eventListeners.put(uuid, eventListener);
         return uuid;
     }
@@ -51,7 +52,7 @@ public class EventManager {
             if (!(listener instanceof EventListener)) return;
             if (!(event.getClass().equals(eventClass))) return;
             ((EventListener) listener).handleEvent(event);
-        }, Minigame.getInstance());
+        }, (Plugin) Minigame.getInstance());
         EventManager.eventListeners.put(uuid, eventListener);
         return uuid;
     }
@@ -63,7 +64,7 @@ public class EventManager {
             if (!(listener instanceof EventListener)) return;
             if (!(event.getClass().equals(eventClass))) return;
             ((EventListener) listener).handleEvent(event);
-        }, Minigame.getInstance());
+        }, (Plugin) Minigame.getInstance());
         EventManager.eventListeners.put(uuid, eventListener);
         return uuid;
     }
@@ -75,7 +76,7 @@ public class EventManager {
             if (!(listener instanceof EventListener)) return;
             if (!(event.getClass().equals(eventClass))) return;
             ((EventListener) listener).handleEvent(event);
-        }, Minigame.getInstance());
+        }, (Plugin) Minigame.getInstance());
         EventManager.eventListeners.put(uuid, eventListener);
         return uuid;
     }
