@@ -7,13 +7,13 @@ import org.bukkit.Location;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiPredicate;
 
 @Getter
@@ -31,6 +31,16 @@ public class GameMap {
         this.locations = new HashMap<>();
     }
 
+    public String getLocationName(Location location){
+        assert  locations.containsValue(location);
+        AtomicReference<String> out = new AtomicReference<>();
+        this.locations.forEach((s, location1) -> {
+            if (location1.equals(location)) {
+                out.set(s);
+            }
+        });
+        return out.get();
+    }
     public static GameMap load(Path path) {
         String json = "";
 
