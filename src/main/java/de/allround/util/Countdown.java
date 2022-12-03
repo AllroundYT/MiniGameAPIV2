@@ -1,6 +1,7 @@
 package de.allround.util;
 
 import de.allround.Minigame;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public abstract class Countdown {
@@ -28,7 +29,7 @@ public abstract class Countdown {
     }
 
     public void start() {
-        getBukkitRunnable().runTaskTimer(Minigame.getInstance(), 0, getTickLength());
+        getBukkitRunnable().runTaskTimer((Plugin) Minigame.getInstance(), 0, getTickLength());
         this.started = true;
     }
 
