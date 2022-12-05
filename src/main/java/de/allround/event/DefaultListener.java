@@ -51,7 +51,7 @@ public class DefaultListener {
                 BlockBreakEvent.class,
                 event -> {
                     MinigamePlayer minigamePlayer = Minigame.getInstance().getGameManager().getPlayerManagement().getPlayer(event.getPlayer());
-                    event.setCancelled(Minigame.getInstance().getGameManager().getMapManagement().getBlockManager().canBreak(minigamePlayer,event.getBlock()));
+                    event.setCancelled(!Minigame.getInstance().getGameManager().getMapManagement().getBlockManager().canBreak(minigamePlayer,event.getBlock()));
                 }
         );
 
@@ -59,7 +59,7 @@ public class DefaultListener {
                 BlockPlaceEvent.class,
                 event -> {
                     MinigamePlayer minigamePlayer = Minigame.getInstance().getGameManager().getPlayerManagement().getPlayer(event.getPlayer());
-                    event.setCancelled(Minigame.getInstance().getGameManager().getMapManagement().getBlockManager().canPlace(minigamePlayer,event.getBlock()));
+                    event.setCancelled(!Minigame.getInstance().getGameManager().getMapManagement().getBlockManager().canPlace(minigamePlayer,event.getBlock()));
                 }
         );
 

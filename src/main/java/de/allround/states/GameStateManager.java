@@ -32,7 +32,7 @@ public class GameStateManager {
     public void startGameState(String state) {
         Optional<GameState> gameState = getGameState(state);
         if (gameState.isEmpty()) return;
-        this.runningState.stop();
+        if (runningState != null) this.runningState.stop();
         this.runningState = gameState.get();
         this.runningState.start();
     }

@@ -29,7 +29,7 @@ public abstract class Countdown {
     }
 
     public void start() {
-        getBukkitRunnable().runTaskTimer((Plugin) Minigame.getInstance(), 0, getTickLength());
+        getBukkitRunnable().runTaskTimer(Minigame.getInstance().getPlugin(), 0, getTickLength());
         this.started = true;
     }
 

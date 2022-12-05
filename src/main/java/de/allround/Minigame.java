@@ -1,15 +1,25 @@
 package de.allround;
 
 import de.allround.event.DefaultListener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public abstract class Minigame extends JavaPlugin {
+import java.lang.reflect.InvocationTargetException;
+
+public abstract class Minigame{
 
     public static Minigame instance;
     private final IGameManager IGameManager;
+    private final Plugin plugin;
 
-    public Minigame(IGameManager IGameManager) {
-        this.IGameManager = IGameManager;
+    public Plugin getPlugin() {
+        return plugin;
+    }
+
+    public Minigame(Plugin plugin, Class<? extends IGameManager> iGameManagerClass) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Minigame.instance = this;
+        this.plugin = plugin;
+        this.IGameManager = iGameManagerClass.getDeclaredConstructor().newInstance();
     }
 
     public static Minigame getInstance(Class<? extends Minigame> mainClass) {
@@ -24,25 +34,22 @@ public abstract class Minigame extends JavaPlugin {
         return IGameManager;
     }
 
-    public abstract void onInit();
+    protected abstract void onInit();
 
-    public abstract void onStart();
+    protected abstract void onStart();
 
-    public abstract void onStop();
+    protected abstract void onStop();
 
-    @Override
-    public final void onLoad() {
+    public final void load() {
         onInit();
     }
 
-    @Override
-    public final void onEnable() {
+    public final void enable() {
         new DefaultListener().register();
         onStart();
     }
 
-    @Override
-    public final void onDisable() {
+    public final void disable() {
         onStop();
     }
 }

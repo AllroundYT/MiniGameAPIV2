@@ -28,7 +28,7 @@ public class PlayerManager {
     }
 
     public List<MinigamePlayer> getPlayers(Predicate<MinigamePlayer> predicate) {
-        return getPlayers().stream().filter(predicate).collect(Collectors.toList());
+        return getCachedPlayers().stream().filter(predicate).collect(Collectors.toList());
     }
 
     public MinigamePlayer getPlayer(Player player){
