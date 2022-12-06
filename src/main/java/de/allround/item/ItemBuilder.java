@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class ItemBuilder {
     private final ItemStack itemStack;
@@ -93,6 +94,14 @@ public class ItemBuilder {
                 skullMeta.setPlayerProfile(player.getPlayerProfile());
             }
         } catch (Exception ignored) {
+        }
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends ItemMeta> ItemBuilder editMeta(Class<T> metaType, Consumer<T> consumer){
+        if (metaType.isInstance(itemMeta)){
+            consumer.accept((T) this.itemMeta);
         }
         return this;
     }
