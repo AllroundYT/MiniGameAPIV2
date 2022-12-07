@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class KitManager { //todo: TEMPLATE KIT verbessern
+public class KitManager {
     private final List<Kit> kits;
 
 
