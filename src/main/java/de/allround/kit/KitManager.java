@@ -1,11 +1,17 @@
 package de.allround.kit;
 
+import de.allround.Minigame;
+import de.allround.item.ItemBuilder;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +27,22 @@ public class KitManager { //todo: TEMPLATE KIT verbessern
                 "template",
                 new ItemStack(Material.ANVIL, 2),
                 new ItemStack[]{},
-                new ItemStack[]{},
-                new ItemStack[]{},
+                new ItemStack[]{
+                        new ItemBuilder(Material.SHIELD).damageItem(5).build()
+                },
+                new ItemStack[]{
+                        new ItemBuilder(Material.TOTEM_OF_UNDYING).setDisplayName("§4TEST").build()
+                },
                 new PotionEffect[]{new PotionEffect(PotionEffectType.ABSORPTION, 1, 1, false, true, false)},
                 5
         );
+        Path.of("plugins", Minigame.getInstance().getPlugin().getName(),"Kits").toFile().mkdirs();
+        saveKit(templateKit, Path.of("plugins", Minigame.getInstance().getPlugin().getName(),"Kits","template.yml").toFile());
         registerKits(templateKit);
+    }
+
+    public Path getKitDirectory(){
+        return Path.of("plugins", Minigame.getInstance().getPlugin().getName(),"Kits");
     }
 
     @SuppressWarnings("ALL")
@@ -40,27 +56,23 @@ public class KitManager { //todo: TEMPLATE KIT verbessern
         return getKits().stream().filter(kit -> kit.getName().equals(name)).findFirst();
     }
 
-    public Kit loadKit(Path path) {
-        if (!path.toFile().exists()) return null;
-        try (final BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(path.toFile()))) {
-            return Kit.deserialize(new String(bufferedInputStream.readAllBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public Kit loadKit(@NotNull File file) {
+        if (!file.exists()) return null;
+        FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+        return new Kit(cfg);
     }
 
-    public void saveTemplateKit(Path path) {
-        String jsonString = Kit.serialize(getKit("template").get());
+    public void saveKit(Kit kit, @NotNull File file) {
         try {
-            if (path.toFile().exists()) path.toFile().delete();
-            path.toFile().createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (final BufferedOutputStream bufferedInputStream = new BufferedOutputStream(new FileOutputStream(path.toFile()))) {
-            bufferedInputStream.write(jsonString.getBytes());
-            bufferedInputStream.flush();
+            if (file.exists()) file.delete();
+            file.createNewFile();
+
+
+            FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+
+            kit.write(cfg);
+
+            cfg.save(file);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import de.allround.Minigame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,12 @@ public abstract class MapManager {
         this.blockManager = blockManager;
         this.IGameManager = Minigame.getInstance().getGameManager();
         this.maps = new ArrayList<>();
+
+        getMapsDirectory().toFile().mkdirs();
+    }
+
+    public Path getMapsDirectory(){
+        return Path.of("plugins",Minigame.getInstance().getPlugin().getName(),"Maps");
     }
 
     public List<GameMap> getPlayableMaps(){
