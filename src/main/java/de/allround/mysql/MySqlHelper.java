@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class MySqlHelper {
@@ -37,6 +38,18 @@ public abstract class MySqlHelper {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public ResultSet queryWithResult(String SQL_QUERY, Object... parameters) {
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(SQL_QUERY)) {
+            for (int i = 1; i <= parameters.length; i++) {
+                preparedStatement.setObject(i, parameters[i - 1]);
+            }
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
