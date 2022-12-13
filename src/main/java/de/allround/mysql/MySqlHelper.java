@@ -46,7 +46,8 @@ public abstract class MySqlHelper {
             for (int i = 1; i <= parameters.length; i++) {
                 preparedStatement.setObject(i, parameters[i - 1]);
             }
-            return preparedStatement.executeQuery();
+            preparedStatement.execute();
+            return preparedStatement.getResultSet();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
