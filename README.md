@@ -19,6 +19,6 @@ Maven dependencies:
 <dependency>
     <groupId>com.github.AllroundYT</groupId>
     <artifactId>MiniGameAPIV2</artifactId>
-    <version>master-63998c03a1-1</version>
+    <version>1.1-Snapshot</version>
 </dependency>
 ```
