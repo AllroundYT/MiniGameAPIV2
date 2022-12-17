@@ -1,6 +1,6 @@
 package de.allround.kit;
 
-import de.allround.item.YamlSerializer;
+import de.allround.util.YamlSerializer;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.configuration.ConfigurationSection;

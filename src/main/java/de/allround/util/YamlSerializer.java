@@ -1,4 +1,4 @@
-package de.allround.item;
+package de.allround.util;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
