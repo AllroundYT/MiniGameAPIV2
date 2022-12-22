@@ -25,7 +25,7 @@ public class EventManager {
 
     public static void registerWaitingListeners(){
         registerWaitingList.forEach((uuid, eventListener) -> {
-            Bukkit.getPluginManager().registerEvent(eventListener.getEventClass(), eventListener, eventListener.getPriority(), (listener, event) -> {
+            Bukkit.getPluginManager().registerEvent(eventListener.getEventClass(), eventListener, eventListener.getPriority() == null ? EventPriority.NORMAL : eventListener.getPriority(), (listener, event) -> {
                 if (!(listener instanceof EventListener)) return;
                 if (!(event.getClass().equals(eventListener.getEventClass()))) return;
                 ((EventListener) listener).handleEvent(event);
