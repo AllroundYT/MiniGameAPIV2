@@ -1,5 +1,5 @@
 # MiniGameAPIV2  [![](https://jitpack.io/v/AllroundYT/MiniGameAPIV2.svg)](https://jitpack.io/#AllroundYT/MiniGameAPIV2)
-An easy to use Minigame APi for PaperSpigot.
+An easy to use minigame API for PaperSpigot.
 Dies ist eine einfache Minigame APi für PaperSpigot.
 
 JavaDoc will be completed soon.
